@@ -1,0 +1,47 @@
+Enter the calibration image directory: C:\projects\photogrammetry\input\oneplus_3t_images\calibration_9x7_smaller\
+Input directory: [C:\projects\photogrammetry\input\oneplus_3t_images\calibration_9x7_smaller\]
+Images found in directory: 18
+Enter pattern width: 9
+Enter pattern height: 7
+Processing 18 images...
+C:\projects\photogrammetry\input\oneplus_3t_images\calibration_9x7_smaller\IMG_20170423_031035.jpg
+Found the board!
+C:\projects\photogrammetry\input\oneplus_3t_images\calibration_9x7_smaller\IMG_20170423_031039.jpg
+Found the board!
+C:\projects\photogrammetry\input\oneplus_3t_images\calibration_9x7_smaller\IMG_20170423_031043.jpg
+Found the board!
+C:\projects\photogrammetry\input\oneplus_3t_images\calibration_9x7_smaller\IMG_20170423_031046.jpg
+Found the board!
+C:\projects\photogrammetry\input\oneplus_3t_images\calibration_9x7_smaller\IMG_20170423_031050.jpg
+Found the board!
+C:\projects\photogrammetry\input\oneplus_3t_images\calibration_9x7_smaller\IMG_20170423_031054.jpg
+Found the board!
+C:\projects\photogrammetry\input\oneplus_3t_images\calibration_9x7_smaller\IMG_20170423_031059.jpg
+Found the board!
+C:\projects\photogrammetry\input\oneplus_3t_images\calibration_9x7_smaller\IMG_20170423_031101.jpg
+Found the board!
+C:\projects\photogrammetry\input\oneplus_3t_images\calibration_9x7_smaller\IMG_20170423_031117.jpg
+Found the board!
+C:\projects\photogrammetry\input\oneplus_3t_images\calibration_9x7_smaller\IMG_20170423_031121.jpg
+Found the board!
+C:\projects\photogrammetry\input\oneplus_3t_images\calibration_9x7_smaller\IMG_20170423_031125.jpg
+Found the board!
+C:\projects\photogrammetry\input\oneplus_3t_images\calibration_9x7_smaller\IMG_20170423_031127.jpg
+Found the board!
+C:\projects\photogrammetry\input\oneplus_3t_images\calibration_9x7_smaller\IMG_20170423_031131.jpg
+Found the board!
+C:\projects\photogrammetry\input\oneplus_3t_images\calibration_9x7_smaller\IMG_20170423_031133.jpg
+Found the board!
+C:\projects\photogrammetry\input\oneplus_3t_images\calibration_9x7_smaller\IMG_20170423_031137.jpg
+Found the board!
+C:\projects\photogrammetry\input\oneplus_3t_images\calibration_9x7_smaller\IMG_20170423_031139.jpg
+Found the board!
+C:\projects\photogrammetry\input\oneplus_3t_images\calibration_9x7_smaller\IMG_20170423_031142.jpg
+Found the board!
+C:\projects\photogrammetry\input\oneplus_3t_images\calibration_9x7_smaller\IMG_20170423_031146.jpg
+Found the board!
+Done processing images.
+(750, 1000)
+[[ 860.96362305    0.          504.1211959 ]
+ [   0.          801.86700439  363.24136312]
+ [   0.            0.            1.        ]]
