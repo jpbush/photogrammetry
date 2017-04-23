@@ -93,7 +93,7 @@ imgpoints = [] # 2d points in image plane.
 # Go through all the images
 print("Processing " + str(num_images) + " images...")
 for fname in images:
-	print(fname + "...")
+	print(fname)
 
 	img = cv2.imread(fname)
 	gray = cv2.cvtColor(img,cv2.COLOR_BGR2GRAY)
@@ -110,18 +110,19 @@ for fname in images:
 		imgpoints.append(corners)
 
 		# Draw and display the corners
-		cv2.drawChessboardCorners(img, (pattern_width,pattern_height), corners, ret)
-		cv2.imshow("img",img)
-		cv2.waitKey(500)
+		#cv2.drawChessboardCorners(img, (pattern_width,pattern_height), corners, ret)
+		#cv2.imshow("img",img)
+		#cv2.waitKey(500)
 
-print("Done processing images")
+print("Done processing images.")
 
 cv2.destroyAllWindows()
 
 ret, mtx, dist, rvecs, tvecs = cv2.calibrateCamera(objpoints, imgpoints, gray.shape[::-1],None,None)
 
-img = cv2.imread(glob.glob("*.jpg")[0])
-h,  w = img.shape[:2]
+images = cv2.imread(glob.glob(cal_in_dir + "*.jpg")[0])
+h,  w = images.shape[:2]
+print(h,w)
 newcameramtx, roi=cv2.getOptimalNewCameraMatrix(mtx,dist,(w,h),1,(w,h))
 
 print(str(newcameramtx))
