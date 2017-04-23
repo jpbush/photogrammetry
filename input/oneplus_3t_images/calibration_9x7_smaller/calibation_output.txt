@@ -1,0 +1,8 @@
+Calibration dimensions:
+   Width: 1000
+   Height: 750
+
+Camera Matrix:
+[[ 860.96362305    0.          504.1211959 ]
+ [   0.          801.86700439  363.24136312]
+ [   0.            0.            1.        ]]
