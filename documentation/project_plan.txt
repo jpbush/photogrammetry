@@ -2,7 +2,11 @@ DONE:
 1. Camera calibration:
    a. Have a camera calibration stage allowing the user to efficiently calibrate their
       camera parameters given they provide some test images
-      
+
+UP NEXT:
+2. Construct point clouds from 2 images
+   a. Properly detect feature points in images
+
 NOT DONE:
 2. Construct point clouds from 2 images
    a. Properly detect feature points in images
