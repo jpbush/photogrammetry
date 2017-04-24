@@ -1,18 +1,20 @@
 DONE:
 1. Camera calibration:
-   a. Have a camera calibration stage allowing the user to efficiently calibrate their
-      camera parameters given they provide some test images
+  a. Have a camera calibration stage allowing the user to efficiently calibrate their
+    camera parameters given they provide some test images
 
 UP NEXT:
+Extra:
+  a. understand SIFT and do an example
 2. Construct point clouds from 2 images
-   a. Properly detect feature points in images
+  a. Properly detect feature points in images
 
 NOT DONE:
 2. Construct point clouds from 2 images
-   a. Properly detect feature points in images
-   b. Matchup feature points between images
-   c. Determine camera rotation between 2 cameras
-   d. Construct sparse point cloud
+  a. Properly detect feature points in images
+  b. Matchup feature points between images
+  c. Determine camera rotation between 2 cameras
+  d. Construct sparse point cloud
 3. Construct point clouds from a sequence of images
-   a. Given a known sequence of images, construct a combined point cloud from in
-      order pairs of images
+  a. Given a known sequence of images, construct a combined point cloud from in
+     order pairs of images
