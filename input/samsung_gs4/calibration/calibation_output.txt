@@ -1,8 +1,19 @@
-Calibration dimensions:
-   Width: 4128
-   Height: 2322
+Image Dimensions:
+(2322, 4128)
 
 Camera Matrix:
+[[  3.94054831e+03   0.00000000e+00   2.05876921e+03]
+ [  0.00000000e+00   3.97345478e+03   1.11090615e+03]
+ [  0.00000000e+00   0.00000000e+00   1.00000000e+00]]
+
+Camera Distortion Coefficients:
+[[  5.55848020e-02   1.14923030e+00  -4.55622119e-03  -2.88084582e-03
+   -6.50253434e+00]]
+
+New Camera Matrix:
 [[  2.60151831e+03   0.00000000e+00   2.15883652e+03]
  [  0.00000000e+00   3.33315552e+03   1.11455892e+03]
  [  0.00000000e+00   0.00000000e+00   1.00000000e+00]]
+
+Output rectangle outlining all-good-pixels after undistort:
+(0, 0, 0, 0)

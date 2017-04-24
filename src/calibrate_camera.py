@@ -53,7 +53,8 @@ if (len(images) < min_cal_images):
     quit()
 # make sure all the images are the same size
 print("Making sure images have the same dimensions...")
-img_height,  img_width = cv2.imread(images[0]).shape[:2]
+img_size = cv2.imread(images[0]).shape[:2]
+img_height,  img_width = img_size
 for img in images:
 	h,  w = cv2.imread(img).shape[:2]
 	if(h != img_height or w != img_width):
@@ -94,6 +95,8 @@ while(pattern_height < min_pattern_height or pattern_height > max_pattern_height
 	pattern_height = int(raw_input("Enter pattern height: "))
 pattern_height = pattern_height - 1
 
+######## Input parsed
+
 # termination criteria
 criteria = (cv2.TERM_CRITERIA_EPS + cv2.TERM_CRITERIA_MAX_ITER, 30, 0.001)
 
@@ -132,33 +135,58 @@ for img_path_file in images:
 		print("Pattern NOT found.")
 
 print("Done processing images.\n\r")
+#cv2.destroyAllWindows()
 
-cv2.destroyAllWindows()
+# GET THE CAMERA MATRIX!!
+ret, camera_mtx, camera_dist_coeff, rvecs, tvecs = cv2.calibrateCamera(objpoints, imgpoints, gray.shape[::-1],None,None)
+new_camera_mtx, valid_pix_roi =cv2.getOptimalNewCameraMatrix(camera_mtx,camera_dist_coeff,(img_width,img_height),1,(img_width,img_height))
 
-ret, mtx, dist, rvecs, tvecs = cv2.calibrateCamera(objpoints, imgpoints, gray.shape[::-1],None,None)
+# print("\nUndistorting pattern images...")
+# undistorted_path = output_path + os.sep + "undistorted"
+# if not os.path.exists(undistorted_path):
+#     os.makedirs(undistorted_path)
+# for img_path_file in images:
+# 	path, filename = os.path.split(img_path_file)
+# 	print(filename)
+# 	img = cv2.imread(img_path_file)
+# 	# undistort
+# 	dst = cv2.undistort(img, camera_mtx, camera_dist_coeff, None, new_camera_mtx)
+# 	cv2.imwrite(undistorted_path + os.sep + filename, dst)
+# print("Undistorting complete.")
 
-newcameramtx, roi=cv2.getOptimalNewCameraMatrix(mtx,dist,(img_width,img_height),1,(img_width,img_height))
+ret, camera_mtx, camera_dist_coeff, rvecs, tvecs = cv2.calibrateCamera(objpoints, imgpoints, gray.shape[::-1],None,None)
+new_camera_mtx, valid_pix_roi =cv2.getOptimalNewCameraMatrix(camera_mtx,camera_dist_coeff,(img_width,img_height),1,(img_width,img_height))
+# save a human readable form
+output_filename = "calibation_output.txt"
+output_path_file = output_path + os.sep + output_filename
+print("\nSaving human readable camera parameters to output directory as: " + output_filename)
+output_file = open(output_path_file, "w+")
+output_file.write("Image Dimensions:\n" + str(img_size))
+output_file.write("\n\nCamera Matrix:\n" + str(camera_mtx))
+output_file.write("\n\nCamera Distortion Coefficients:\n" + str(camera_dist_coeff))
+output_file.write("\n\nNew Camera Matrix:\n" + str(new_camera_mtx))
+output_file.write("\n\nOutput rectangle outlining all-good-pixels after undistort:\n" + str(valid_pix_roi))
+output_file.close()
+print("Saved.")
 
-print("Calibration dimensions:\n   Width: " + str(img_width) + "\n   Height: " + str(img_height) + "\n")
-print("Camera Matrix:")
-print(str(newcameramtx))
+# save camera Matrix
+print("\nSaving some .npy arrays to output directory:")
+img_size_filename = "image_size.npy"
+camera_mtx_filename = "camera_mtx.npy"
+camera_dist_coeff_filename = "camera_dist_coeff.npy"
+new_camera_mtx_filename = "new_camera_mtx.npy"
+valid_pix_roi_filename = "valid_pix_roi.npy"
 
-output_file = open(output_path + os.sep + "calibation_output.txt", "w+")
-output_file.write("Calibration dimensions:\n   Width: " + str(img_width) + "\n   Height: " + str(img_height) + "\n\n")
-output_file.write("Camera Matrix:\n")
-output_file.write(str(newcameramtx))
-
-print("\nUndistorting pattern images...")
-undistorted_path = output_path + os.sep + "undistorted"
-if not os.path.exists(undistorted_path):
-    os.makedirs(undistorted_path)
-for img_path_file in images:
-	path, filename = os.path.split(img_path_file)
-	print(filename)
-	img = cv2.imread(img_path_file)
-	# undistort
-	dst = cv2.undistort(img, mtx, dist, None, newcameramtx)
-	cv2.imwrite(undistorted_path + os.sep + filename, dst)
-print("Undistorting complete.")
+print(img_size_filename)
+np.save(output_path + os.sep + img_size_filename, img_size)
+print(camera_mtx_filename)
+np.save(output_path + os.sep + camera_mtx_filename, camera_mtx)
+print(camera_dist_coeff_filename)
+np.save(output_path + os.sep + camera_dist_coeff_filename, camera_dist_coeff)
+print(new_camera_mtx_filename)
+np.save(output_path + os.sep + new_camera_mtx_filename, new_camera_mtx)
+print(valid_pix_roi_filename)
+np.save(output_path + os.sep + valid_pix_roi_filename, valid_pix_roi)
+print("Saved.")
 
 print("Done.")
