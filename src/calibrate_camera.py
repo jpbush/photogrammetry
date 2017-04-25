@@ -42,15 +42,21 @@ while(not os.path.isdir(input_path)):
 	input_path = raw_input("Enter the calibration image directory: ")
 print("Input directory: [" + input_path + "]")
 
-# get all the images
 print("Finding images...")
-images = glob.glob(input_path + "*.jpg")
+# get all the jpg and png images
+types = (input_path + "*.jpg", input_path + "*.png") # the tuple of file types
+images = []
+for files in types:
+	images.extend(glob.glob(files))
 num_images = len(images)
+
+# make sure there are enough images
 print("Images found in directory: " + str(num_images))
 if (len(images) < min_cal_images):
     print("You need at least " + str(min_cal_images) + " images to calibrate.")
     print("Goodbye...")
     quit()
+
 # make sure all the images are the same size
 print("Making sure images have the same dimensions...")
 img_size = cv2.imread(images[0]).shape[:2]
@@ -189,4 +195,4 @@ print(valid_pix_roi_filename)
 np.save(output_path + os.sep + valid_pix_roi_filename, valid_pix_roi)
 print("Saved.")
 
-print("Done.")
+print("\nDone.")
