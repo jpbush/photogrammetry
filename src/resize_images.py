@@ -37,14 +37,14 @@ args = vars(ap.parse_args())
 print("")
 # if an input directory was given
 if args.get("input", False):
-	input_path = args["input"]
+	input_path = args["input"].rstrip(os.sep) + os.sep
 # otherwise, ask the user for an input directory
 else:
-	input_path = raw_input("Enter the image directory: ")
+	input_path = raw_input("Enter the image directory: ").rstrip(os.sep) + os.sep
 # make sure the input directory is valid
 while(not os.path.isdir(input_path)):
 	print("Input directory must exist.")
-	input_path = raw_input("Enter the image directory: ")
+	input_path = raw_input("Enter the image directory: ").rstrip(os.sep) + os.sep
 print("Input directory: [" + input_path + "]")
 
 print("Finding images...")
@@ -111,7 +111,7 @@ print("Output height: " + str(output_height))
 
 # if an output directory was given
 if args.get("output", False):
-	output_path = args["output"]
+	output_path = args["output"].rstrip(os.sep) + os.sep
 else:
     print("No output directory given so one will be created.")
     # create output path simlar to input path

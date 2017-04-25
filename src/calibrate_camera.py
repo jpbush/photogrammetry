@@ -32,14 +32,14 @@ args = vars(ap.parse_args())
 print("")
 # if an input directory was given
 if args.get("input", False):
-	input_path = args["input"]
+	input_path = args["input"].rstrip(os.sep) + os.sep
 # otherwise, ask the user for an input directory
 else:
-	input_path = raw_input("Enter the calibration image directory: ")
+	input_path = raw_input("Enter the calibration image directory: ").rstrip(os.sep) + os.sep
 # make sure the input directory is valid
 while(not os.path.isdir(input_path)):
 	print("Input directory must exist.")
-	input_path = raw_input("Enter the calibration image directory: ")
+	input_path = raw_input("Enter the calibration image directory: ").rstrip(os.sep) + os.sep
 print("Input directory: [" + input_path + "]")
 
 print("Finding images...")
@@ -71,12 +71,12 @@ print("Image dimensions look good!")
 
 # if an output directory was given
 if args.get("output", False):
-	output_path = args["output"]
+	output_path = args["output"].rstrip(os.sep) + os.sep
 else:
-	output_path = raw_input("Enter the output directory: ")
+	output_path = raw_input("Enter the output directory: ").rstrip(os.sep) + os.sep
 while(not os.path.isdir(output_path)):
 	print("Output directory must exist.")
-	output_path = raw_input("Enter the output directory: ")
+	output_path = raw_input("Enter the output directory: ").rstrip(os.sep) + os.sep
 print("Output directory: [" + output_path + "]")
 
 # make sure they input a width
@@ -148,7 +148,7 @@ ret, camera_mtx, camera_dist_coeff, rvecs, tvecs = cv2.calibrateCamera(objpoints
 new_camera_mtx, valid_pix_roi =cv2.getOptimalNewCameraMatrix(camera_mtx,camera_dist_coeff,(img_width,img_height),1,(img_width,img_height))
 
 # print("\nUndistorting pattern images...")
-# undistorted_path = output_path + os.sep + "undistorted"
+# undistorted_path = output_path + "undistorted"
 # if not os.path.exists(undistorted_path):
 #     os.makedirs(undistorted_path)
 # for img_path_file in images:
@@ -157,14 +157,14 @@ new_camera_mtx, valid_pix_roi =cv2.getOptimalNewCameraMatrix(camera_mtx,camera_d
 # 	img = cv2.imread(img_path_file)
 # 	# undistort
 # 	dst = cv2.undistort(img, camera_mtx, camera_dist_coeff, None, new_camera_mtx)
-# 	cv2.imwrite(undistorted_path + os.sep + filename, dst)
+# 	cv2.imwrite(undistorted_path + filename, dst)
 # print("Undistorting complete.")
 
 ret, camera_mtx, camera_dist_coeff, rvecs, tvecs = cv2.calibrateCamera(objpoints, imgpoints, gray.shape[::-1],None,None)
 new_camera_mtx, valid_pix_roi =cv2.getOptimalNewCameraMatrix(camera_mtx,camera_dist_coeff,(img_width,img_height),1,(img_width,img_height))
 # save a human readable form
 output_filename = "calibation_output.txt"
-output_path_file = output_path + os.sep + output_filename
+output_path_file = output_path + output_filename
 print("\nSaving human readable camera parameters to output directory as: " + output_filename)
 output_file = open(output_path_file, "w+")
 output_file.write("Image Dimensions:\n" + str(img_size))
@@ -184,15 +184,15 @@ new_camera_mtx_filename = "new_camera_mtx.npy"
 valid_pix_roi_filename = "valid_pix_roi.npy"
 
 print(img_size_filename)
-np.save(output_path + os.sep + img_size_filename, img_size)
+np.save(output_path + img_size_filename, img_size)
 print(camera_mtx_filename)
-np.save(output_path + os.sep + camera_mtx_filename, camera_mtx)
+np.save(output_path + camera_mtx_filename, camera_mtx)
 print(camera_dist_coeff_filename)
-np.save(output_path + os.sep + camera_dist_coeff_filename, camera_dist_coeff)
+np.save(output_path + camera_dist_coeff_filename, camera_dist_coeff)
 print(new_camera_mtx_filename)
-np.save(output_path + os.sep + new_camera_mtx_filename, new_camera_mtx)
+np.save(output_path + new_camera_mtx_filename, new_camera_mtx)
 print(valid_pix_roi_filename)
-np.save(output_path + os.sep + valid_pix_roi_filename, valid_pix_roi)
+np.save(output_path + valid_pix_roi_filename, valid_pix_roi)
 print("Saved.")
 
 print("\nDone.")
