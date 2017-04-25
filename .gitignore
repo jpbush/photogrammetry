@@ -1,6 +1,7 @@
 # Exclude
 *desktop.ini
 output/*
+input_private/*
 
 #PYTHON
 # Byte-compiled / optimized / DLL files
