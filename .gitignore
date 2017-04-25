@@ -2,6 +2,7 @@
 *desktop.ini
 output/*
 input_private/*
+playground/*
 
 #PYTHON
 # Byte-compiled / optimized / DLL files
